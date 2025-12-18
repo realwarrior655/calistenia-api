@@ -1,13 +1,21 @@
+//IMPORTS GENERALES
 import { Router } from "express";
 import { check } from "express-validator";
 
-import { getUsers, postUser } from "../controllers/user.controller";
+//IMPORTS CONTROLLERS
+import {
+  getUsers,
+  postUser,
+  putUser,
+  delUser,
+} from "../controllers/user.controller";
 import { validarCampos } from "../middlewares/validar-campos";
-import { putUser } from "../controllers/put.controller";
-import { delUser } from "../controllers/delete.controller";
 
 const router = Router();
+//OBTENER USERS
 router.get("/", getUsers);
+
+//CREAR USER
 router.post(
   "/",
   [
@@ -20,6 +28,8 @@ router.post(
   validarCampos,
   postUser
 );
+
+//ACTUALIZAR USER
 router.put(
   "/:id",
   [
@@ -30,6 +40,8 @@ router.put(
   ],
   putUser
 );
+
+//BORRAR USER
 router.delete(
   "/:id",
   [check("id", "El ID no es válido").isMongoId(), validarCampos],
