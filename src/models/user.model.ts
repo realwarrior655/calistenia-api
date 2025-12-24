@@ -24,11 +24,6 @@ const UserSchema = new Schema<Create_User>({
     required: true,
     enum: ["ADMIN_ROLE", "USER_ROLE"],
   },
-  id: {
-    type: String,
-    required: [true, "El id es obligatorio"],
-    unique: true,
-  },
   status: {
     type: Boolean,
     default: true,

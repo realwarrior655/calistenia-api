@@ -10,6 +10,7 @@ import {
   delUser,
 } from "../controllers/user.controller";
 import { validarCampos } from "../middlewares/validar-campos";
+import { validarJWT } from "../middlewares/validar-jwt";
 
 const router = Router();
 //OBTENER USERS
@@ -44,7 +45,7 @@ router.put(
 //BORRAR USER
 router.delete(
   "/:id",
-  [check("id", "El ID no es válido").isMongoId(), validarCampos],
+  [validarJWT, check("id", "El ID no es válido").isMongoId(), validarCampos],
   delUser
 );
 
